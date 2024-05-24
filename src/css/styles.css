@@ -33,14 +33,14 @@
   border: 1px solid #4E75FF
 }
 
-.search-bar button {
+button {
   border: 0 solid #000;
   border-radius: 8px;
   background-color: #4E75FF;
   color: #fff;
   padding: 8px 16px;
 }
-.search-bar button:hover {
+button:hover {
   background-color: #6C8CFF;
 }
 

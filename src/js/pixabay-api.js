@@ -1,26 +1,15 @@
-import { searchInput } from "../main";
-import { galleryRender} from "./render-functions";
+import axios from "axios";
 
-export function request() {
-    const params = new URLSearchParams({
-        key: '44001471-3db462177f0e91bc0a7989cfe',
-        q: searchInput.value,
-        image_type: 'photo',
-        orientation: 'horizontal',
-        safesearch: 'safe'
+export async function request(searchValue, pageNum) {
+    return await axios.get(`https://pixabay.com/api/`, {
+        params: {
+            per_page: 15,
+            page: pageNum,
+            key: '44001471-3db462177f0e91bc0a7989cfe',
+            q: searchValue,
+            image_type: 'photo',
+            orientation: 'horizontal',
+            safesearch: 'safe'
+        }
     });
-
-    fetch(`https://pixabay.com/api/?${params}`)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(response.status);
-            }
-            return response.json();
-        })
-        .then((photos) => {
-            galleryRender(photos);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
 }

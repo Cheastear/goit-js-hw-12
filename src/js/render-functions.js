@@ -6,8 +6,24 @@ import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-export function loader() {
-    gallery.innerHTML = '<span class="loader"></span>';
+export function clear() {
+    gallery.innerHTML = '';
+}
+
+export function createLoader() {
+    gallery.innerHTML += '<span class="loader"></span>';
+}
+
+export function removeLoader() {
+    document.querySelector('.loader').remove()
+}
+
+export function createLeanMore(onclick) {
+    gallery.innerHTML += '<button type="button" class="leanMore">Lean more</button>';
+    document.querySelector('.leanMore').addEventListener('click', onclick)
+}
+export function removeLeanMore() {
+    document.querySelector('.leanMore').remove();
 }
 
 export function galleryRender(photos) {
@@ -32,7 +48,7 @@ export function galleryRender(photos) {
             </div>`;
         });
     }
-    gallery.innerHTML = innerHTML;
+    gallery.innerHTML += innerHTML;
     new SimpleLightbox('.gallery-card a', {
         captionsData: 'alt',
         captionDelay: 250,
